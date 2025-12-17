@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>اصنع قصيدتك</title>
+
+<style>
+body{
+  font-family: 'Cairo', sans-serif;
+  background:#f3e7d7;
+  text-align:center;
+  padding:25px;
+  direction:rtl;
+}
+
+.container{
+  width:92%;
+  max-width:620px;
+  margin:auto;
+  background:#fff8ef;
+  padding:25px;
+  border-radius:14px;
+  border:2px solid #b89572;
+  box-shadow:0 0 14px rgba(0,0,0,0.1);
+}
+
+h1{
+  color:#573b27;
+  margin-bottom:8px;
+  font-size:26px;
+}
+
+p{
+  color:#6b4f3e;
+  margin-bottom:14px;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+input{
+  flex:1 1 28%;
+  min-width:120px;
+  padding:12px;
+  font-size:17px;
+  border-radius:10px;
+  border:1px solid #b89572;
+  text-align:center;
+}
+
+button{
+  margin-top:15px;
+  background:#6a4a32;
+  color:white;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#533a27;
+}
+
+.poem-box{
+  margin-top:22px;
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  border:1px dashed #b89572;
+  min-height:90px;
+  font-size:19px;
+  color:#4a3322;
+}
+
+.countdown{
+  margin-top:15px;
+  font-size:20px;
+  color:#6a4a32;
+  font-weight:bold;
+  min-height:28px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>اصنع قصيدتك</h1>
+  <p>اكتب ثلاث كلمات وسيتم توليد القصيدة بعد عدٍّ تنازلي</p>
+
+  <div class="row">
+    <input id="word1" placeholder="الكلمة الأولى">
+    <input id="word2" placeholder="الكلمة الثانية">
+    <input id="word3" placeholder="الكلمة الثالثة">
+  </div>
+
+  <button onclick="startCountdown()">ابدع يا شاعر!</button>
+
+  <div class="countdown" id="countdownBox"></div>
+
+  <div class="poem-box" id="poemBox">ستظهر القصيدة هنا...</div>
+</div>
+
+<script>
+function startCountdown(){
+  const w1 = document.getElementById("word1").value.trim();
+  const w2 = document.getElementById("word2").value.trim();
+  const w3 = document.getElementById("word3").value.trim();
+  const countdown = document.getElementById("countdownBox");
+  const box = document.getElementById("poemBox");
+
+  if(!w1 || !w2 || !w3){
+    box.innerHTML = "الرجاء كتابة ثلاث كلمات.";
+    return;
+  }
+
+  box.innerHTML = "";
+  let timeLeft = 3;
+  countdown.innerHTML = "سيتم إنشاء القصيدة خلال: " + timeLeft;
+
+  let timer = setInterval(()=>{
+    timeLeft--;
+    countdown.innerHTML = "سيتم إنشاء القصيدة خلال: " + timeLeft;
+
+    if(timeLeft === 0){
+      clearInterval(timer);
+      countdown.innerHTML = "";
+
+      box.innerHTML =
+        "يا " + escapeHTML(w1) + " يشرقُ في روحِ " + escapeHTML(w2) +
+        "<br>ويزهرُ معنى " + escapeHTML(w3) + " في قلب شاعرٍ حرٍّ.";
+    }
+  },1000);
+}
+
+function escapeHTML(str){
+  return str.replace(/&/g,'&amp;')
+            .replace(/</g,'&lt;')
+            .replace(/>/g,'&gt;');
+}
+</script>
+
+</body>
+</html>
