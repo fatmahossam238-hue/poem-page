@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Spam Trap!</title>
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  background: #fff3cd;
+  padding: 40px;
+}
+button {
+  background: #e63946;
+  color: white;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+#message {
+  display: none;
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-top: 25px;
+}
+</style>
+</head>
+<body>
+
+<h1>🎉 YOU WON A FREE IPHONE! 🎉</h1>
+<p>Click below to claim your million-dollar prize!</p>
+
+<button onclick="showMessage()">
+CLICK HERE!
+</button>
+
+<div id="message">
+<h1>😂 GOTCHA!</h1>
+<h2>There is NO free iPhone!</h2>
+<p>Spam is an unwanted message that may contain
+dangerous links.</p>
+<p>🛡️ Think before you click!</p>
+<p>Never click suspicious links or share personal information.</p>
+<strong>Be SMART, Stay SAFE!</strong>
+</div>
+
+<script>
+function showMessage() {
+ document.getElementById("message").style.display = "block";
+}
+</script>
+
+</body>
+</html>
